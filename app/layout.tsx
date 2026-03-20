@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${newsreader.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text-primary)] font-[var(--font-sans)]">
+      <body className="min-h-screen flex flex-col text-[var(--text-primary)] font-[var(--font-sans)]">
         {/* Background layers */}
         <div className="bg-waves" aria-hidden="true" />
         <div className="bg-glow-left" aria-hidden="true" />
