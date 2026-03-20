@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full max-w-4xl mx-auto px-6 py-8 flex items-center justify-between border-t border-[var(--border)]">
+    <footer className="relative z-10 w-full max-w-4xl mx-auto px-6 py-8 flex items-center justify-between border-t border-[var(--border)]">
       <p className="text-xs text-[var(--text-muted)]">
         © 2025 / <span className="text-[var(--text-secondary)]">Abhishek.</span>{" "}
         All rights reserved.

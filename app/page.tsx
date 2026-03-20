@@ -8,12 +8,27 @@ export default function Home() {
           HERO SECTION
       ═══════════════════════════════════════════ */}
       <section id="about" className="mb-24 scroll-mt-20">
-        {/* Status badge */}
-        <div className="mb-8 animate-fade-in-up">
+        {/* Status badge + Resume */}
+        <div className="flex items-center gap-3 mb-8 animate-fade-in-up">
           <div className="status-badge">
             <span className="status-dot" />
             Available for Hire
           </div>
+          {process.env.NEXT_PUBLIC_RESUME_URL && (
+            <a
+              href={process.env.NEXT_PUBLIC_RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary !py-1.5 !px-4 !text-xs"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Resume
+            </a>
+          )}
         </div>
 
         {/* Avatar + Name badge */}

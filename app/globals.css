@@ -4,16 +4,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Design tokens ── */
+/* ── Design tokens (dark theme) ── */
 :root {
-  --bg: #f5f5f4;
-  --bg-card: #ececea;
+  --bg: #0a0a0f;
+  --bg-card: rgba(255, 255, 255, 0.04);
   --bg-white: #ffffff;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --border: #e5e7eb;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border: rgba(255, 255, 255, 0.08);
   --accent: #6366f1;
+  --glow-blue: rgba(59, 130, 246, 0.15);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", ui-serif, Georgia, serif;
@@ -31,22 +32,77 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-sans);
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* ── Subtle grain overlay ── */
+/* ── Wavy background layers (seevt.dev style) ── */
+.bg-waves {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-waves::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 110%;
+  height: 60%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23141420' d='M0,224L48,208C96,192,192,160,288,165.3C384,171,480,213,576,218.7C672,224,768,192,864,176C960,160,1056,160,1152,170.7C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom center / cover,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230f0f1a' d='M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,229.3C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom center / cover;
+}
+
+.bg-waves::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23101018' d='M0,96L48,112C96,128,192,160,288,154.7C384,149,480,107,576,96C672,85,768,107,864,128C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'/%3E%3C/svg%3E") no-repeat top center / cover;
+}
+
+/* ── Edge glow ── */
+.bg-glow-left,
+.bg-glow-right {
+  position: fixed;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-glow-left {
+  left: 0;
+  background: radial-gradient(ellipse at left center, var(--glow-blue), transparent 70%);
+}
+
+.bg-glow-right {
+  right: 0;
+  background: radial-gradient(ellipse at right center, var(--glow-blue), transparent 70%);
+}
+
+/* ── Grain overlay ── */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 200px 200px;
+  background-size: 128px 128px;
 }
 
-/* ── Mono label (THE APPROACH, etc.) ── */
+/* ── Mono label ── */
 .mono-label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -63,29 +119,24 @@ body::before {
 
 /* ── Fade-in animation ── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out both;
-}
-
+.animate-fade-in-up { animation: fadeInUp 0.6s ease-out both; }
 .animate-delay-1 { animation-delay: 0.1s; }
 .animate-delay-2 { animation-delay: 0.2s; }
 .animate-delay-3 { animation-delay: 0.3s; }
 .animate-delay-4 { animation-delay: 0.4s; }
 .animate-delay-5 { animation-delay: 0.5s; }
+.animate-delay-6 { animation-delay: 0.6s; }
+.animate-delay-7 { animation-delay: 0.7s; }
 
-/* ── Smooth card style ── */
+/* ── Card (glassmorphic dark) ── */
 .card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.75rem;
 }
@@ -105,13 +156,13 @@ body::before {
 
 .nav-pill:hover {
   color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .nav-pill.active {
   color: var(--text-primary);
-  background: var(--bg-white);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Buttons ── */
@@ -125,12 +176,13 @@ body::before {
   font-size: 0.875rem;
   font-weight: 500;
   background: var(--text-primary);
-  color: var(--bg-white);
+  color: var(--bg);
   transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #374151;
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .btn-secondary {
@@ -149,11 +201,11 @@ body::before {
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 0, 0, 0.03);
-  border-color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* ── Status badge (Available for Hire) ── */
+/* ── Status badge ── */
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -162,9 +214,9 @@ body::before {
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #065f46;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .status-dot {
@@ -213,35 +265,33 @@ body::before {
   color: var(--text-primary);
   font-weight: 500;
   border-left-color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* ── Project card ── */
 .project-card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
 }
 
 .project-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  border-color: var(--border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* ── GitHub graph ── */
 .github-graph img {
   width: 100%;
   border-radius: 0.75rem;
-  filter: grayscale(0.2);
+  filter: invert(1) hue-rotate(180deg) brightness(0.9);
   transition: filter 0.3s ease;
 }
 
 .github-graph:hover img {
-  filter: grayscale(0);
+  filter: invert(1) hue-rotate(180deg) brightness(1);
 }
-
-.animate-delay-6 { animation-delay: 0.6s; }
-.animate-delay-7 { animation-delay: 0.7s; }
