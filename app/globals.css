@@ -295,3 +295,175 @@ body::before {
 .github-graph:hover img {
   filter: invert(1) hue-rotate(180deg) brightness(1);
 }
+
+/* ═══════════════════════════════════════════
+   CONTENT WRAPPER
+═══════════════════════════════════════════ */
+.content-wrapper {
+  margin-left: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   HEADING NAVIGATION
+═══════════════════════════════════════════ */
+.heading-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 1.25rem 2rem;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.heading-nav.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.heading-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.375rem 0.5rem;
+}
+
+.heading-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.heading-nav-link:hover {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.heading-nav-link.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide on small screens — use mobile nav instead */
+@media (max-width: 640px) {
+  .heading-nav {
+    padding: 0.75rem 1rem;
+  }
+
+  .heading-nav-link {
+    font-size: 0.6rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE NAV
+═══════════════════════════════════════════ */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(10, 10, 15, 0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+}
+
+@media (min-width: 1024px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+.mobile-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.mobile-nav-brand {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+  margin-right: auto;
+}
+
+.mobile-nav-links {
+  display: flex;
+  gap: 0;
+}
+
+.mobile-nav-link {
+  padding: 0.375rem 0.625rem;
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mobile-nav-link.active {
+  color: var(--text-primary);
+}
+
+/* Mobile scroll progress */
+.mobile-scroll-progress {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mobile-scroll-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.15s ease-out;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.3);
+}
