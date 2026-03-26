@@ -37,13 +37,31 @@ export default function Home() {
         <ScrollReveal delay={100}>
           {/* Avatar + Name badge */}
           <div className="flex items-center gap-3 mb-6">
-            <Image
-              src="https://avatars.githubusercontent.com/u/104018804?v=4"
-              alt="Abhishek Yadav"
-              width={48}
-              height={48}
-              className="rounded-full"
-            />
+            {process.env.NEXT_PUBLIC_RESUME_URL ? (
+              <a
+                href={process.env.NEXT_PUBLIC_RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open resume"
+                className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+              >
+                <Image
+                  src="/profile.png"
+                  alt="Abhishek Yadav"
+                  width={48}
+                  height={48}
+                  className="rounded-full"
+                />
+              </a>
+            ) : (
+              <Image
+                src="/profile.png"
+                alt="Abhishek Yadav"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+            )}
             <div>
               <p className="text-sm font-medium text-[var(--text-primary)]">
                 Abhishek Yadav
