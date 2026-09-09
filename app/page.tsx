@@ -16,55 +16,33 @@ export default function Home() {
               <span className="status-dot" />
               Available for Hire
             </div>
-            {process.env.NEXT_PUBLIC_RESUME_URL && (
-              <a
-                href={process.env.NEXT_PUBLIC_RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary !py-1.5 !px-4 !text-xs"
-              >
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Resume
-              </a>
-            )}
+            <a
+              href="/resume"
+              className="btn-secondary !py-1.5 !px-4 !text-xs"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Resume
+            </a>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
           {/* Avatar + Name badge */}
           <div className="flex items-center gap-3 mb-6">
-            {process.env.NEXT_PUBLIC_RESUME_URL ? (
-              <a
-                href={process.env.NEXT_PUBLIC_RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open resume"
-                className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
-              >
-                <Image
-                  src="/profile.png"
-                  alt="Abhishek Yadav"
-                  width={48}
-                  height={48}
-                  className="rounded-full"
-                />
-              </a>
-            ) : (
-              <Image
-                src="/profile.png"
-                alt="Abhishek Yadav"
-                width={48}
-                height={48}
-                className="rounded-full"
-              />
-            )}
+            <Image
+              src="/profile.png"
+              alt="Abhisek Yadav"
+              width={48}
+              height={48}
+              className="size-12 rounded-full object-cover"
+            />
             <div>
               <p className="text-sm font-medium text-[var(--text-primary)]">
-                Abhishek Yadav
+                Abhisek Yadav
               </p>
               <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide">
                 India
@@ -110,7 +88,7 @@ export default function Home() {
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/"
+              href="https://www.linkedin.com/in/abhishekyadav7"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -120,17 +98,7 @@ export default function Home() {
               </svg>
               LinkedIn
             </a>
-            <a
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-              Twitter
-            </a>
+
           </div>
         </ScrollReveal>
       </section>
@@ -400,7 +368,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://ghchart.rshah.org/111827/opx0"
-              alt="Abhishek's GitHub contribution graph"
+              alt="Abhisek's GitHub contribution graph"
               loading="lazy"
             />
           </div>

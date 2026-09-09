@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# opxz.dev
 
-## Getting Started
+Personal portfolio and resume distribution site built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production checks:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun run lint
+bun run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Resume workflow
 
-## Learn More
+The resume has two permanent public interfaces:
 
-To learn more about Next.js, take a look at the following resources:
+- `https://opxz.dev/resume` — canonical page for sharing
+- `https://opxz.dev/resume.pdf` — direct PDF file
+- `https://resume.opxz.dev` — memorable alias that redirects to the canonical page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The deployed site contains one resume artifact at `public/resume.pdf`. Resume history belongs in Git, not in versioned filenames.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Compile and export the resume from Overleaf with XeLaTeX, then replace the deployed artifact with:
 
-## Deploy on Vercel
+```bash
+./scripts/update-resume.sh ~/Downloads/resume.pdf
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The script validates that the source is a PDF, copies it to `public/resume.pdf`, and displays the resulting Git status and diff summary. Review and publish it explicitly:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+git add public/resume.pdf
+git commit -m "Update resume"
+git push
+```
+
+Vercel deploys the portfolio and resume together from this repository. Attach both `opxz.dev` and `resume.opxz.dev` to the same Vercel project; the application permanently redirects the resume subdomain to the canonical page. There is intentionally no LaTeX compilation or automatic commit pipeline.

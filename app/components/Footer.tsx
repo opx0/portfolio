@@ -1,8 +1,16 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname === "/resume") return null;
+
   return (
-    <footer className="relative z-10 w-full max-w-4xl mx-auto px-6 py-8 flex items-center justify-between border-t border-[var(--border)]">
-      <p className="text-xs text-[var(--text-muted)]">
-        © 2025 / <span className="text-[var(--text-secondary)]">Abhishek.</span>{" "}
+    <footer className="relative z-10 w-full max-w-4xl mx-auto px-6 py-8 flex items-center justify-between border-t border-(--border)">
+      <p className="text-xs text-(--text-muted)">
+        © <span className="text-(--text-secondary)">Abhisek.</span>{" "}
         All rights reserved.
       </p>
 
@@ -11,7 +19,7 @@ export default function Footer() {
           href="https://github.com/opx0"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+          className="text-(--text-muted) hover:text-foreground transition-colors"
           aria-label="GitHub"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -19,10 +27,10 @@ export default function Footer() {
           </svg>
         </a>
         <a
-          href="https://www.linkedin.com/in/"
+          href="https://www.linkedin.com/in/abhishekyadav7"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+          className="text-(--text-muted) hover:text-foreground transition-colors"
           aria-label="LinkedIn"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">

@@ -22,9 +22,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abhishek Yadav — Portfolio",
+  metadataBase: new URL("https://opxz.dev"),
+  title: {
+    default: "Abhisek Yadav — Portfolio",
+    template: "%s — Abhisek Yadav",
+  },
   description:
     "FullStack Engineer & Systems Dev. Building performant, human-centric applications.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Abhisek Yadav — Portfolio",
+    description:
+      "FullStack Engineer & Systems Dev. Building performant, human-centric applications.",
+    url: "/",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

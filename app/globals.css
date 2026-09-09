@@ -467,3 +467,23 @@ body::before {
   transition: width 0.15s ease-out;
   box-shadow: 0 0 6px rgba(99, 102, 241, 0.3);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-in-up,
+  .status-dot {
+    animation: none;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal.is-visible,
+  .heading-nav,
+  .heading-nav.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

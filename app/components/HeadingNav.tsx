@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const sections = [
   { id: "stack", label: "Skills" },
@@ -10,10 +11,13 @@ const sections = [
 ];
 
 export default function HeadingNav() {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (pathname !== "/") return;
+
     const handleScroll = () => {
       setIsVisible(window.scrollY > 300);
     };
@@ -41,25 +45,27 @@ export default function HeadingNav() {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname]);
+
+  if (pathname !== "/") return null;
 
   return (
-    <nav className={`heading-nav ${isVisible ? "is-visible" : ""}`}>
+    <nav
+      className={`heading-nav ${isVisible ? "is-visible" : ""}`}
+      aria-label="Portfolio sections"
+    >
       <div className="heading-nav-inner">
         {sections.map((section) => (
-          <button
+          <a
             key={section.id}
-            onClick={() =>
-              document
-                .getElementById(section.id)
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            href={`#${section.id}`}
+            aria-current={activeSection === section.id ? "location" : undefined}
             className={`heading-nav-link ${
               activeSection === section.id ? "active" : ""
             }`}
           >
             {section.label}
-          </button>
+          </a>
         ))}
       </div>
     </nav>
