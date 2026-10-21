@@ -32,7 +32,20 @@ if [ -f "$destination" ] && cmp -s -- "$source_file" "$destination"; then
   exit 0
 fi
 
-cp -- "$source_file" "$destination"
+temporary_file=$(mktemp "$project_dir/public/.resume.XXXXXX")
+trap 'rm -f -- "$temporary_file"' EXIT
+trap 'exit 1' HUP INT TERM
+
+cp -- "$source_file" "$temporary_file"
+case "$(LC_ALL=C file -b -- "$temporary_file")" in
+  PDF\ document*) ;;
+  *)
+    echo "Error: staged file is not a PDF." >&2
+    exit 1
+    ;;
+esac
+chmod 644 "$temporary_file"
+mv -f -- "$temporary_file" "$destination"
 
 echo "Updated public/resume.pdf"
 echo

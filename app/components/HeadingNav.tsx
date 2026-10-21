@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const sections = [
-  { id: "stack", label: "Skills" },
   { id: "projects", label: "Projects" },
+  { id: "stack", label: "Skills" },
   { id: "career", label: "Career" },
   { id: "contact", label: "Contact" },
 ];
@@ -13,14 +14,9 @@ const sections = [
 export default function HeadingNav() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (pathname !== "/") return;
-
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
-    };
+    if (pathname !== "/" || !("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -38,36 +34,33 @@ export default function HeadingNav() {
       .filter(Boolean) as HTMLElement[];
     sectionEls.forEach((el) => observer.observe(el));
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => observer.disconnect();
   }, [pathname]);
 
-  if (pathname !== "/") return null;
+  if (pathname === "/resume") return null;
+
+  const currentSection = pathname === "/"
+    ? activeSection
+    : pathname.startsWith("/work/") ? "projects" : "";
 
   return (
-    <nav
-      className={`heading-nav ${isVisible ? "is-visible" : ""}`}
-      aria-label="Portfolio sections"
-    >
-      <div className="heading-nav-inner">
+    <header className="site-header">
+      <Link href="/" className="site-wordmark" aria-label="Abhishek Yadav home">abhishek<span aria-hidden="true">*</span></Link>
+      <nav className="heading-nav" aria-label="Portfolio sections">
         {sections.map((section) => (
           <a
             key={section.id}
-            href={`#${section.id}`}
-            aria-current={activeSection === section.id ? "location" : undefined}
+            href={`${pathname === "/" ? "" : "/"}#${section.id}`}
+            aria-current={currentSection === section.id ? "location" : undefined}
             className={`heading-nav-link ${
-              activeSection === section.id ? "active" : ""
+              currentSection === section.id ? "active" : ""
             }`}
           >
             {section.label}
           </a>
         ))}
-      </div>
-    </nav>
+      </nav>
+      <Link href="/resume" className="header-resume">Resume <span aria-hidden="true">↗</span></Link>
+    </header>
   );
 }

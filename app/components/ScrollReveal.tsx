@@ -18,7 +18,7 @@ export default function ScrollReveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -38,7 +38,7 @@ export default function ScrollReveal({
     <div
       ref={ref}
       className={`scroll-reveal ${isVisible ? "is-visible" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ animationDelay: `${delay}ms` }}
     >
       {children}
     </div>
