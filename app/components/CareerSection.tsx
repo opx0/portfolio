@@ -16,36 +16,36 @@ interface CareerEntry {
 
 const careerData: CareerEntry[] = [
   {
+    id: "codeflix",
+    name: "Codeflix Labs",
+    role: "Full Stack Developer Intern — Repomind",
+    period: "Mar 2026 – Aug 2026",
+    location: "Remote",
+    type: "work",
+    tech: ["TypeScript", "Next.js", "PostgreSQL", "Prisma", "Inngest", "Docker", "GitHub Actions"],
+    achievements: [
+      "Built and deployed a coursework platform with student, faculty and admin workflows; faculty approve AI-suggested marks.",
+      "Used PostgreSQL serializable transactions to prevent competing assignments from overbooking topics.",
+      "Moved AI grading and repository synchronization into background jobs with concurrency and rate controls.",
+      "Worked on automated tests, deployment checks, database backups and rollback handling.",
+    ],
+    links: [{ label: "Product", url: "https://repomind.codeflixlabs.com" }],
+  },
+  {
     id: "lpu",
     name: "Lovely Professional University",
     role: "B.Tech — Computer Science & Engineering",
-    period: "2021 – 2025",
-    location: "Punjab, India",
+    period: "Aug 2023 – Jul 2027 (expected)",
+    location: "Phagwara, Punjab, India",
     type: "education",
-    tech: [
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Node.js",
-      "Go",
-      "Python",
-      "Docker",
-      "PostgreSQL",
-      "Linux",
-    ],
+    tech: ["Python", "TypeScript", "JavaScript", "SQL", "React", "Node.js", "PostgreSQL"],
     achievements: [
-      "Built AI Tutor — a full-stack AI-powered course generation platform with streaming, deployed on Vercel",
-      "Developed dev-cli in Go — a developer productivity CLI tool with 1★ on GitHub",
-      "Created BudgetBuddy — a full-stack finance tracking app with Next.js backend",
-      "Won Petbyte BYTEBASH Hackathon — built a complete web application",
-      "Maintained dotfiles repository (1★) — deep Arch Linux & Hyprland system customization",
-      "Built r2sync — Cloudflare R2 sync utility in TypeScript",
-      "Active open-source contributor with 24 public repositories",
+      "CGPA: 7.35.",
+      "Top 10 of 150+ teams at the ByteBash Hackathon at LPU, October 2023.",
+      "Built Levelhead and Ground Truth; see featured work for code and project details.",
+      "Available for full-time employment under the university's work arrangement.",
     ],
-    links: [
-      { label: "GitHub", url: "https://github.com/opx0" },
-    ],
+    links: [{ label: "GitHub", url: "https://github.com/opx0" }],
   },
 ];
 
@@ -54,12 +54,12 @@ export default function CareerSection() {
   const activeEntry = careerData.find((e) => e.id === activeId)!;
 
   return (
-    <section className="mb-24 animate-fade-in-up animate-delay-5">
+    <section>
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="mono-label mb-1">SO FAR</p>
-          <h2 className="text-2xl font-light tracking-tight">Career</h2>
+          <p className="mono-label mb-5">04 / Experience &amp; education</p>
+          <h2 className="display-heading">Always building.</h2>
         </div>
       </div>
 
@@ -71,6 +71,8 @@ export default function CareerSection() {
             <button
               key={entry.id}
               onClick={() => setActiveId(entry.id)}
+              aria-pressed={activeId === entry.id}
+              aria-controls="career-detail"
               className={`timeline-item text-left ${
                 activeId === entry.id ? "active" : ""
               }`}
@@ -81,7 +83,7 @@ export default function CareerSection() {
         </div>
 
         {/* Right — Detail view */}
-        <div className="card">
+        <div id="career-detail" className="card" aria-live="polite" aria-atomic="true">
           {/* Institution header */}
           <div className="flex items-start justify-between mb-4">
             <div>
@@ -157,6 +159,18 @@ export default function CareerSection() {
           )}
         </div>
       </div>
+      <noscript>
+        {careerData.slice(1).map((entry) => (
+          <article key={entry.id} className="card mt-6">
+            <h3 className="text-lg font-medium">{entry.name}</h3>
+            <p className="text-sm text-(--text-secondary) mt-2">{entry.role}</p>
+            <p className="text-xs text-(--text-muted) mt-2">{entry.period} · {entry.location}</p>
+            <ul className="list-disc pl-5 mt-4 space-y-2 text-sm text-(--text-secondary)">
+              {entry.achievements.map((achievement) => <li key={achievement}>{achievement}</li>)}
+            </ul>
+          </article>
+        ))}
+      </noscript>
     </section>
   );
 }

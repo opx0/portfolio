@@ -1,0 +1,132 @@
+% Content refreshed 21 October 2026 from the existing Overleaf snapshot.
+% Keep the original A4 layout, Arial font, section order and education details.
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{geometry}
+
+\geometry{top=0.45in, bottom=0.45in, left=0.5in, right=0.5in}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\definecolor{LPUBlue}{RGB}{0,51,153}
+\hypersetup{colorlinks=true, urlcolor=LPUBlue, linkcolor=LPUBlue,
+  pdftitle={Abhishek Yadav -- Resume}, pdfauthor={Abhishek Yadav}}
+
+\titleformat{\section}{
+  \vspace{-4pt}\fontsize{12}{14}\selectfont\scshape\raggedright\color{LPUBlue}
+}{}{0em}{}[\color{black}\titlerule\vspace{-4pt}]
+\newcommand{\resumeItem}[1]{\item\normalsize{#1\vspace{-3pt}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \fontsize{10}{12}\selectfont\textcolor{LPUBlue}{#1} & \normalsize #2 \\
+    \normalsize#3 & \normalsize #4 \\
+  \end{tabular*}\vspace{-6pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    \fontsize{10}{12}\selectfont#1 & \normalsize #2 \\
+  \end{tabular*}\vspace{-6pt}
+}
+\renewcommand\labelitemi{$\bullet$}
+\renewcommand\labelitemii{$\bullet$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+{\fontsize{21}{24}\selectfont {\textcolor{LPUBlue}{Abhishek Yadav}}}\\[2pt]
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  LinkedIn: \href{https://www.linkedin.com/in/abhishekyadav7}{\underline{www.linkedin.com/in/abhishekyadav7}} &
+  Email: \href{mailto:akyv2.5@gmail.com}{\underline{akyv2.5@gmail.com}} \\
+  GitHub: \href{https://github.com/opx0}{\underline{github.com/opx0}} &
+  Mobile: +91 9369344917 \\
+\end{tabular*}
+\vspace{-4pt}
+
+\section{Skills}
+\resumeSubHeadingListStart
+  \item
+  \textcolor{LPUBlue}{\textbf{Languages}}: Python, TypeScript, JavaScript, SQL \\[2pt]
+  \textcolor{LPUBlue}{\textbf{Backend}}: Node.js, Fastify, REST APIs, PostgreSQL, Prisma, Inngest, MCP \\[2pt]
+  \textcolor{LPUBlue}{\textbf{Frontend}}: React, Next.js, Tailwind CSS, TanStack Query, TanStack Table, Vite \\[2pt]
+  \textcolor{LPUBlue}{\textbf{Tools}}: Docker, nginx, GitHub Actions, Linux, Bun, Playwright, Google Cloud Run
+\resumeSubHeadingListEnd
+
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Codeflix Labs}{Remote}
+    {Full Stack Developer Intern -- Repomind}{Mar' 26 -- Aug' 26}
+  \resumeItemListStart
+    \resumeItem{Built and deployed Repomind, a Next.js and PostgreSQL coursework platform with student, faculty and admin workflows, where faculty approve AI-suggested marks on GitHub projects.}
+    \resumeItem{Prevented topic overbooking with PostgreSQL Serializable transactions, handling competing assignments to the same remaining seat without allowing both to commit.}
+    \resumeItem{Moved AI grading and repository synchronization into Inngest background jobs with concurrency and rate controls, keeping long-running work off the request path.}
+    \resumeItem{Worked on automated tests, GitHub Actions and Docker deployment checks, database backups before migrations, and rollback handling for failed releases.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{\textcolor{LPUBlue}{Levelhead}} \normalsize\textbar{} TypeScript, Fastify, PostgreSQL, React \normalsize\textbar{} \href{https://github.com/opx0/CLOSURE}{\underline{GitHub}}}{Jun' 26 -- Present}
+  \resumeItemListStart
+    \resumeItem{Built a technical-interview mentor connecting practice to candidate answers and project code; separated the generative interview conductor from the evaluator.}
+    \resumeItem{Implemented code-controlled question selection and append-only session events, so plans, questions, answers and findings can be inspected and replayed.}
+    \resumeItem{Required findings to cite quoted answer spans and allowed abstention when evidence is insufficient. Evaluator accuracy has not been benchmarked.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{\textcolor{LPUBlue}{Ground Truth}} \normalsize\textbar{} TypeScript, Next.js, Cloud Run \normalsize\textbar{} \href{https://github.com/opx0/groundtruth}{\underline{GitHub}} \normalsize\textbar{} \href{https://ground-truth-946486142611.us-central1.run.app}{\underline{Live}}}{Sep' 26}
+  \resumeItemListStart
+    \resumeItem{Built an environmental public-record report for a US address, drawing on six sources for air quality, flooding, contaminated land and nearby industry.}
+    \resumeItem{Loaded independent sources in parallel and streamed report sections as they arrived; displayed source failures without blocking the rest of the report.}
+    \resumeItem{Connected report values to agency records, raw fields, fetched URLs and response hashes using typed provenance. Used source-backed templates rather than a combined safety score.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{\textcolor{LPUBlue}{Agent Visa}} \normalsize\textbar{} Python, MCP, SQLite \normalsize\textbar{} \href{https://github.com/opx0/agent-visa}{\underline{GitHub}}}{Aug' 26}
+  \resumeItemListStart
+    \resumeItem{Built scoped, time-limited agent permissions with human approval, access receipts and cascading revocation. Delegated visas cannot exceed their parent's scope or lifetime.}
+    \resumeItem{Separated authorization policy from storage and transport. Used SQLite as a stand-in for a gated external memory API; full external integration is not claimed.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Certifications \& Achievements}
+\resumeSubHeadingListStart
+  \item
+  \fontsize{10}{12}\selectfont Cloud Computing \normalsize\textbar{} \href{https://drive.google.com/file/d/18q9WO3GKa6SigJ47DDjZxXxnqXNQLHUt/view?usp=drive_link}{\underline{NPTEL}} \hfill Aug' 25 \\[2pt]
+  \fontsize{10}{12}\selectfont Top 10 of 150+ teams, ByteBash Hackathon at \href{https://drive.google.com/file/d/1JfaVKZB82MZYrMUgE8fyJZ9BMRTY-xoW/view?usp=drive_link}{\underline{LPU}} \hfill Oct' 23
+\resumeSubHeadingListEnd
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Lovely Professional University}{Phagwara, Punjab}
+    {Bachelor of Technology -- Computer Science and Engineering; \textbf{CGPA: 7.35}}{Aug' 23 -- Jul' 27}
+  \resumeSubheading
+    {Oxford Model Senior Secondary School}{Kanpur, Uttar Pradesh}
+    {Intermediate; \textbf{Percentage: 77\%}}{Mar' 20 -- May' 21}
+  \resumeSubheading
+    {Oxford Model Senior Secondary School}{Kanpur, Uttar Pradesh}
+    {Matriculation; \textbf{Percentage: 88\%}}{Mar' 18 -- May' 19}
+\resumeSubHeadingListEnd
+\end{document}

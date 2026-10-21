@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         source: "/",
         has: [{ type: "host", value: "resume.opxz.dev" }],
-        destination: "https://opxz.dev/resume",
+        destination: "https://www.opxz.dev/resume",
         permanent: true,
       },
     ];
